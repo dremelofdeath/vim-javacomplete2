@@ -24,15 +24,11 @@
             <groupId>kg.ash.javavi.apache.logging.log4j</groupId>
             <artifactId>log4j-api</artifactId>
             <version>2.7</version>
-            <scope>system</scope>
-            <systemPath>${basedir}/../javavi_log4j-api.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>kg.ash.javavi.apache.logging.log4j</groupId>
             <artifactId>log4j-core</artifactId>
             <version>2.7</version>
-            <scope>system</scope>
-            <systemPath>${basedir}/../javavi_log4j-core.jar</systemPath>
         </dependency>        
         <dependency>
             <groupId>junit</groupId>
@@ -98,6 +94,45 @@
                         </manifest>
                     </archive>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-install-plugin</artifactId>
+                <version>2.5.2</version>
+                <executions>
+                    <execution>
+                        <id>install-external-api</id>
+                        <phase>clean</phase>
+                        <configuration>
+                            <file>${basedir}/../javavi_log4j-api.jar</file>
+                            <repositoryLayout>default</repositoryLayout>
+                            <groupId>kg.ash.javavi.apache.logging.log4j</groupId>
+                            <artifactId>log4j-api</artifactId>
+                            <version>2.7</version>
+                            <packaging>jar</packaging>
+                            <generatePom>true</generatePom>
+                        </configuration>
+                        <goals>
+                            <goal>install-file</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>install-external-core</id>
+                        <phase>clean</phase>
+                        <configuration>
+                            <file>${basedir}/../javavi_log4j-core.jar</file>
+                            <repositoryLayout>default</repositoryLayout>
+                            <groupId>kg.ash.javavi.apache.logging.log4j</groupId>
+                            <artifactId>log4j-core</artifactId>
+                            <version>2.7</version>
+                            <packaging>jar</packaging>
+                            <generatePom>true</generatePom>
+                        </configuration>
+                        <goals>
+                            <goal>install-file</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
